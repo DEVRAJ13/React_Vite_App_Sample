@@ -37,7 +37,7 @@ export default function Dashboard() {
           required
         />
       </div>
-      <button type="submit">add item</button>
+
     </form>
       <div>
         <h1>Items</h1>

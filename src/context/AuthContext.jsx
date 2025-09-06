@@ -15,14 +15,16 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const login = () => {
+  const login = (data) => {
     setIsAuthenticated(true);
     localStorage.setItem('auth', 'true');
+    localStorage.setItem('data', JSON.stringify(data))
   };
 
   const logout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem('auth');
+    localStorage.removeItem('data');
   };
 
   return (

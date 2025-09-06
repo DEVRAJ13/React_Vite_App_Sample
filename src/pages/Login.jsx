@@ -21,10 +21,31 @@ export default function Login() {
     const valueChecker = validate(email, password);
     setErrors(valueChecker['type'])
     if (!valueChecker['status']) return;
-    login();
-    navigate('/dashboard');
-    setResponse({ "email": email, "password": password });
-    setErrors({});
+
+    try {
+      // Call your login API
+      const res = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+      console.log(data)
+      if (!res.ok) {
+        setErrors({ api: data.message || "Login failed" });
+        return;
+      }
+
+      // save user/token in your auth context
+      login(data); // assuming login() in AuthContext handles token/user
+      navigate("/dashboard");
+      setResponse(data);
+      // setErrors({});
+    } catch (error) {
+      console.error(error);
+      setErrors({ api: "Something went wrong. Try again later." });
+    }
   };
 
   return (
@@ -51,6 +72,15 @@ export default function Login() {
         {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
       </div>
       <button type="submit">Login</button>
+
+         <button
+        type="button"
+        onClick={() => navigate("/register")}
+        style={{ marginLeft: "10px" }}
+      >
+        Register
+      </button>
+          {errors.api && <p style={{ color: "red" }}>{errors.api}</p>}
       {response && (
         <pre>{JSON.stringify(response, null, 2)}</pre>
       )}

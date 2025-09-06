@@ -7,6 +7,7 @@ import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login />} />
+         
             <Route
               path="/dashboard"
               element={
