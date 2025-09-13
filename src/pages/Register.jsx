@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import app_icon from "../assets/app_icon.png";
 
 export default function Register() {
   const { login } = useAuth();
@@ -42,8 +43,10 @@ export default function Register() {
   return (
     <div className="register-container">
       <div className="register-box">
-        <div className="register-icons">🐑 🐑 🐑 🐑</div>
-        <h2>Create an account to publish<br />and share models.</h2>
+        <div className="register-icons">
+          <img src={app_icon} alt="AppIcon" />
+        </div>
+        <h2>Create an account.</h2>
 
         <form onSubmit={handleSubmit} className="register-form">
           <input
@@ -112,6 +115,11 @@ export default function Register() {
           font-size: 32px;
           margin-bottom: 16px;
         }
+          .register-icons img {
+    width: 80px;   
+    height: 80px;  
+    object-fit: contain; 
+  }
         h2 {
           font-size: 20px;
           font-weight: 600;

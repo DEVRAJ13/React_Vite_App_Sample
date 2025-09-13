@@ -3,6 +3,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
+import logo from "../assets/logo.png";
 
 export default function Navbar() {
   const { isAuthenticated, logout } = useAuth();
@@ -20,7 +21,7 @@ export default function Navbar() {
   return (
     <header className="header">
       <div className="logo">
-        <img src="https://example.com/your-logo.svg" alt="Logo" />
+          <img src={logo} alt="Logo"/>
       </div>
       <nav className="nav-links">
         <ul>

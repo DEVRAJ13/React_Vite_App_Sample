@@ -13,9 +13,9 @@
   width: 100%;
 }
 
-.logo img {
-  width: 50px;
-  margin-bottom: 20px;
+.logo_h img {
+    width: 140px;
+    height: 128px;
 }
 
 .title {
