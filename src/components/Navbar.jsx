@@ -1,6 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom';
+
+
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-// import './Navbar.css'; // Optional styling file
+import './Navbar.css';
 
 export default function Navbar() {
   const { isAuthenticated, logout } = useAuth();
@@ -16,44 +18,28 @@ export default function Navbar() {
   };
 
   return (
-    <nav style={styles.nav}>
-      <Link to="/" style={styles.brand}>MyApp</Link>
-      <div>
-        {isAuthenticated && <Link to="/dashboard" style={styles.link}>Dashboard</Link>}
-        {isAuthenticated && <Link to="/profile" style={styles.link}>Profile</Link>}
-        <button onClick={handleAuthClick} style={styles.button}>
-          {isAuthenticated ? 'Logout' : 'Login'}
-        </button>
+    <header className="header">
+      <div className="logo">
+        <img src="https://example.com/your-logo.svg" alt="Logo" />
       </div>
-    </nav>
+      <nav className="nav-links">
+        <ul>
+          {isAuthenticated && <li><NavLink to="/dashboard"
+      className={({ isActive }) => (isActive ? "active-link" : "")}>Dashboard</NavLink></li>}
+          {isAuthenticated && <li><NavLink to="/profile"
+      className={({ isActive }) => (isActive ? "active-link" : "")}>Profile</NavLink></li>}
+        </ul>
+      </nav>
+      <div className="search-and-buttons">
+        {/* <input type="text" className="search-input" placeholder="Search models" /> */}
+        <div className="auth-buttons">
+          {/* <button className="sign-in-btn">Sign in</button> */}
+          <button className="sign-in-btn" onClick={handleAuthClick}>
+            {isAuthenticated ? 'Logout' : 'Login'}
+          </button>
+          {/* <button className="download-btn">Download</button> */}
+        </div>
+      </div>
+    </header>
   );
 }
-
-const styles = {
-  nav: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '10px 20px',
-    background: '#282c34',
-    color: '#fff',
-  },
-  brand: {
-    fontSize: '20px',
-    fontWeight: 'bold',
-    textDecoration: 'none',
-    color: '#61dafb',
-  },
-  link: {
-    marginRight: '15px',
-    color: '#fff',
-    textDecoration: 'none',
-  },
-  button: {
-    padding: '6px 12px',
-    background: '#61dafb',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  }
-};

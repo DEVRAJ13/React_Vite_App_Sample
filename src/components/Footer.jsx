@@ -2,7 +2,7 @@
 export default function Footer() {
   return (
     <footer style={styles.footer}>
-      <p>© {new Date().getFullYear()} MyApp — Powered by React + Vite</p>
+      <p>© {new Date().getFullYear()} Smriti — Powered by Open AI</p>
     </footer>
   );
 }

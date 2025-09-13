@@ -23,22 +23,34 @@ export default function Dashboard() {
     setProductName('');
   }
 
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]); // Get the first selected file
+  };
+
   return (
     <div>
 
 
-      <form onSubmit={handleSubmit}>
       <div>
-        <input
-          type="product_name"
-          placeholder="Product Name"
-          value={product_name}
-          onChange={e => setProductName(e.target.value)}
-          required
-        />
+        <input type="file" onChange={handleFileChange} />
+        {selectedFile && <p>Selected file: {selectedFile.name}</p>}
       </div>
 
-    </form>
+
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input
+            type="product_name"
+            placeholder="Product Name"
+            value={product_name}
+            onChange={e => setProductName(e.target.value)}
+            required
+          />
+        </div>
+
+      </form>
       <div>
         <h1>Items</h1>
         <button onClick={addItem}>Add Item</button>
